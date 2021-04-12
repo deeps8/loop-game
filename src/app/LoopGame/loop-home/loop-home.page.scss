@@ -1,0 +1,35 @@
+ion-header {
+  ion-toolbar {
+    ion-buttons {
+      ion-button {
+        box-shadow: 1px 1px 0px white;
+        --border-radius: 4px;
+        border-radius: 4px;
+        margin-right: 11px;
+        font-size: 10px;
+        height: 28px;
+        width: 40px;
+      }
+    }
+    ion-title {
+      color: rebeccapurple;
+      text-shadow: 1px 1px 0px white;
+    }
+  }
+}
+
+
+ion-content{
+    .container{
+        padding: 20px;
+        h5{
+          font-family: pixel; 
+          font-size:13px; 
+          letter-spacing: 2px;
+        }
+        p{
+            line-height: 23px;
+            margin:5px 0;
+        }
+    }
+}

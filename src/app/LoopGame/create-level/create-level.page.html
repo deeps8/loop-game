@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="games"></ion-back-button>
+    </ion-buttons>
+    <ion-title>create level</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="get-values"> 
+    <div class="rules">
+      <h5>How to make your own Level </h5>
+      <p>Rows and Columns will be between 2 to 10 only.</p>
+      <p>Click on cells for creating the walls, exit and start of loop.</p>
+      <p>You can only have one Exit and Start of loop.</p>
+      <p>Your level will be saved and published when you have already solved the level.</p>
+    </div>
+      <form novalidate [formGroup]="levelForm" (ngSubmit)="createBoard(levelForm.value)">
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="6">
+              <ion-label color="success" position="floating">Creater's Name</ion-label>
+              <ion-input required  formControlName="createrName" type="text" ></ion-input>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label color="success" position="floating">Level Name</ion-label>
+              <ion-input required  formControlName="levelName" type="text" ></ion-input>
+            </ion-col>
+
+            <ion-col size="4">
+              <ion-label color="success" position="floating">Board Rows</ion-label>
+              <ion-input required #row formControlName="boardRows" type="number" max="10" min="2" name="boardRows"></ion-input>
+            </ion-col>
+            <ion-col size="4">
+              <ion-label color="success" position="floating">Board Cols</ion-label>
+              <ion-input required #col formControlName="boardCols" max="10" min="2" type="number"></ion-input>
+            </ion-col>
+            <ion-col size="4" class="btn-section" style="margin-top: 12px;">
+              <ion-button color="success" block (click)="buildBoard(row.value,col.value)" >
+                Build Board
+              </ion-button>
+            </ion-col>
+            <ion-col  size-md="5" size="12" >
+              <div class="game-board" >
+                <div class="game-canvas">
+                  <ion-button
+                    *ngIf="starts.i >= 0 "
+                    (click)="removeFunctionality(starts.i,starts.j,'Start')"
+                    color="secondary"
+                    [ngStyle]="{'top.px':(starts.i * cell.h),'left.px':(starts.j * cell.w),'height.px': cell.h-6,'width.px':cell.w-6}"
+                    class="start-btn"
+                    >
+                      <ion-icon slot="icon-only" name="play"></ion-icon>
+                    </ion-button>
+                    <div class="row" *ngFor="let i of boardArray,index as ri" >
+                      <div class="col" [ngStyle]="{'height.px': cell.h,'max-width.px':cell.w,'min-width.px':cell.w}"  *ngFor="let j of i,index as rj" >
+                        <div class="cell" (click)="setCellFunc(ri,rj)">
+                          <div *ngIf="j=='E'" class="exit" (click)="removeFunctionality(ri,rj,'Exit')" ></div>
+                          <div *ngIf="j=='W'" class="wall" (click)="removeFunctionality(ri,rj,'Wall')" ></div>
+                        </div>
+                      </div>
+                    </div>
+      
+                </div>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label color="success" position="floating">Add Function Limit to level</ion-label>
+              <ion-input required  formControlName="limit" type="number" max="10" min="1" name="limit"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <div class="btn-section">
+          <ion-button block color="primary" type="submit" [disabled]="validLevel(levelForm.valid)">
+            Save and Test Run
+          </ion-button>
+        </div>
+        
+      </form>
+  </div>
+</ion-content>

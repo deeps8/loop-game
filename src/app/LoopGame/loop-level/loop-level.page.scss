@@ -1,0 +1,68 @@
+@import "../loop-home/loop-home.page.scss";
+
+.game-canvas {
+  width: fit-content;
+  margin: auto;
+  position: relative;
+  .start-btn {
+    position: absolute;
+    transition: all 0.5s;
+    height: 44px;
+    width: 44px;
+    margin: 3px;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+  .row {
+    display: flex;
+    width: fit-content;
+    margin: auto;
+    .col {
+      padding: 2px;
+      max-width: 50px;
+      height: 50px;
+      min-width: 50px;
+      background: rebeccapurple;
+      .cell {
+        box-shadow: 2px 2px 0px #4c2671, -2px -2px 0px #4c2671;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        background: rebeccapurple;
+        .wall {
+          background-color: #e21045;
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+        }
+        .exit{
+          border:3px solid var(--ion-color-secondary);
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+
+.loop-section{
+  font-size: 14px;
+  p,span{
+    font-family: monospace, monospace;
+    margin: 0;
+    padding: 5px;
+  }
+  span{
+    color: #696868;
+  }
+  .running{
+    background-color: #333;
+    border-radius: 5px;
+    padding-left: 10px;
+    transition: all .5s;
+  }
+}
+
+

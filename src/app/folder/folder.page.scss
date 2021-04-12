@@ -1,0 +1,38 @@
+ion-header{
+    ion-toolbar{
+        ion-title{
+            text-shadow: 2px 2px 0px  rebeccapurple;
+        }
+    }
+}
+ion-content {
+  ion-grid {
+    ion-row {
+      ion-col {
+        padding:10px;
+        .game-card {
+          background-color: rebeccapurple;
+          text-align: center;
+          border-radius: 5px;
+          box-shadow: 5px 5px 0px white;
+          color: white;
+          padding: 15px;
+          outline: none;
+
+          h3,p,ion-icon{
+            margin: 0;
+            padding: 0;
+            margin-bottom: 10px;
+          }
+          h3{
+            text-transform: uppercase;
+            font-family: pixel;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            word-spacing: 3px;
+          }
+        }
+      }
+    }
+  }
+}

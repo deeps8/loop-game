@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="loop"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Loopi Loop lvl {{level}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" *ngIf="nextLevel > 0" fill="solid" [routerLink]="['/loop','level',nextLevel]" >
+        <ion-icon name="play-forward"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col  size-md="5" size="12" >
+        <div class="game-board" >
+          <div class="game-canvas">
+            <ion-button
+            color="secondary"
+            [ngStyle]="{'top.px':(startsi * cell.h),'left.px':(startsj * cell.w),'height.px': cell.h-6,'width.px':cell.w-6}"
+            class="start-btn"
+            >
+              <ion-icon slot="icon-only" name="play"></ion-icon>
+            </ion-button>
+              <div class="row" *ngFor="let i of levelObject.boardArray" >
+                <div class="col" [ngStyle]="{'height.px': cell.h,'max-width.px':cell.w,'min-width.px':cell.w}"  *ngFor="let j of i" >
+                  <div class="cell">
+                    <div *ngIf="j=='E'" class="exit"></div>
+                    <div *ngIf="j=='W'" class="wall" ></div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </ion-col>
+      <ion-col  size-md="7" size="12" > 
+        <div class="loop-board">
+          
+          <ion-grid >
+            <ion-row>
+              <ion-col size="7">
+                <div class="loop-section">
+                  <span>// function limit {{levelObject.functionLimit}}</span>
+                  <p>While( !complete() ) &#123;</p>
+                    <p *ngFor="let fun of executeFunc"
+                        [ngClass]="{running: (fun == runningFun) }" >
+                      {{getfunc(fun)}}
+                      <ion-icon slot="end" name="close-circle-outline" (click)="deleteFun(fun)" ></ion-icon>
+                    </p>
+                  <p>&#125;</p>
+                </div>
+              </ion-col>
+              <ion-col size="5" class="btn-section">
+                <div>
+                  <ion-button  [disabled]="this.executeFunc.length == 0" color="success" (click)="runWhileLoop()">
+                    Start
+                  </ion-button>
+                  <ion-button  [disabled]="this.executeFunc.length == 0" color="danger" (click)="resetLevel()">
+                    Reset
+                  </ion-button>
+                </div>
+                
+                <ion-button (click)="addFunction(1)" >
+                  moveForward()
+                </ion-button>
+                <ion-button (click)="addFunction(2)" >
+                  moveBackward()
+                </ion-button>
+                <ion-button (click)="addFunction(3)" >
+                  moveLeft()
+                </ion-button>
+                <ion-button  (click)="addFunction(4)" >
+                  moveright()
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "loop-game",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

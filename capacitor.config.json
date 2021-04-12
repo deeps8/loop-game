@@ -1,0 +1,13 @@
+{
+  "appId": "io.learn.loop.game",
+  "appName": "Loop Game",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
